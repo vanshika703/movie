@@ -55,3 +55,7 @@ button:focus {
 .card-img-top {
   height: 300px;
 }
+
+.card-title {
+  font-weight: bold;
+}
