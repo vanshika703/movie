@@ -1,0 +1,57 @@
+.App {
+  font-family: "Montserrat", sans-serif;
+  width: 100vw;
+  height: 100vh;
+  font-family: sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://muii.in/__export/1600794313496/sites/muiindia/img/2020/09/22/619306-bg-full-netflix-grid-v2_desktop.jpg_554688468.jpg");
+}
+
+h1 {
+  color: white;
+  font-weight: bold;
+  font-size: 4rem;
+  text-shadow: 0 0 10px black;
+}
+
+input {
+  border: none;
+  border-radius: 2px;
+  padding: 8px 16px;
+  box-shadow: 0 0 10px black;
+}
+
+button {
+  border: none;
+  border-radius: 2px;
+  padding: 8px 16px;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  box-shadow: 0 0 10px black;
+}
+
+button:focus {
+  outline: none;
+}
+
+.card {
+  border: 2px white solid;
+  box-shadow: 0 0 10px black;
+  margin: 2%;
+  transition: 1s all ease;
+}
+
+.card-img-top {
+  height: 300px;
+}
