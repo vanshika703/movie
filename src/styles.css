@@ -41,6 +41,10 @@ button:hover {
   box-shadow: 0 0 10px black;
 }
 
+input:focus {
+  outline: none;
+}
+
 button:focus {
   outline: none;
 }
