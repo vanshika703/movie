@@ -5,6 +5,7 @@
   font-family: sans-serif;
   text-align: center;
   display: flex;
+  overflow-x: auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;

@@ -4,6 +4,8 @@ import "./styles.css";
 const App = () => {
   const [search, setSearch] = useState("");
   const [movie, setMovie] = useState(null);
+  const [review, setReview] = useState(null);
+  const [parental, setParental] = useState(null);
   const getData = async () => {
     try {
       const response = await fetch(
@@ -20,7 +22,48 @@ const App = () => {
 
       const data = await response.json();
       console.log(data);
-      setMovie(data.results[0]);
+
+      const id = data.results[0].id.substring(7, 16);
+      console.log(id);
+
+      const reviewResponse = await fetch(
+        `https://imdb8.p.rapidapi.com/title/get-ratings?tconst=${id}`,
+        {
+          method: "GET",
+          headers: {
+            "x-rapidapi-key":
+              "e4a4acb90emsh66e91cfedbf52e5p1febabjsne85f34306aa7",
+            "x-rapidapi-host": "imdb8.p.rapidapi.com"
+          }
+        }
+      );
+
+      const reviewData = await reviewResponse.json();
+      console.log(reviewData);
+
+      const parentalResponse = await fetch(
+        `https://imdb8.p.rapidapi.com/title/get-parental-guide?tconst=${id}`,
+        {
+          method: "GET",
+          headers: {
+            "x-rapidapi-key":
+              "e4a4acb90emsh66e91cfedbf52e5p1febabjsne85f34306aa7",
+            "x-rapidapi-host": "imdb8.p.rapidapi.com"
+          }
+        }
+      );
+
+      const parentalData = await parentalResponse.json();
+      console.log(parentalData.parentalguide);
+
+      setMovie({
+        ...data.results[0],
+        review: reviewData.rating,
+        parental: parentalData.parentalguide
+      });
+      /* setReview(reviewData.rating);
+      setParental(parentalData.parentalguide); */
+      console.log(parental);
     } catch (err) {
       console.error(err);
     }
@@ -48,8 +91,12 @@ const App = () => {
             </li>
             <li className="list-group-item">Year : {movie.year}</li>
             <li className="list-group-item">
-              Actors : {movie.principals[0].name}, {movie.principals[1].name},{" "}
-              {movie.principals[2].name}
+              Actors : {movie.principals[0].name}, {movie.principals[1].name}
+            </li>
+            <li className="list-group-item">Rating : {movie.review}</li>
+            <li className="list-group-item">
+              Parental Guide : {movie.parental[0].label},
+              {movie.parental[1].label}
             </li>
           </ul>
         </div>
